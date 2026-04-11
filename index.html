@@ -1,0 +1,102 @@
+📄 index.html
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DinoNana — Adivinhe o Dinossauro</title>
+
+  <!-- fontes -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,700;1,400&family=DM+Sans:wght@300;400;500&display=swap" rel="stylesheet">
+
+  <!-- css -->
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+<div class="wrap">
+  <header>
+    <h1 class="logo">DinoNana <span>by Duquinhas</span></h1>
+    <p class="tagline">Adivinhe o dinossauro do dia</p>
+  </header>
+
+  <div class="stats-bar">
+    <div class="stat"><div class="stat-val" id="s-played">0</div><div class="stat-lbl">Jogados</div></div>
+    <div class="stat"><div class="stat-val" id="s-wins">0</div><div class="stat-lbl">Vitórias</div></div>
+    <div class="stat"><div class="stat-val" id="s-streak">0</div><div class="stat-lbl">Sequência</div></div>
+    <div class="stat"><div class="stat-val" id="s-best">—</div><div class="stat-lbl">Melhor</div></div>
+  </div>
+
+  <div class="legend">
+    <div class="legend-item"><div class="leg-box" style="background:var(--green-bg);border:0.5px solid rgba(61,122,82,0.4)"></div>Correto</div>
+    <div class="legend-item"><div class="leg-box" style="background:var(--yellow-bg);border:0.5px solid rgba(138,122,26,0.4)"></div>Próximo</div>
+    <div class="legend-item"><div class="leg-box" style="background:var(--red-bg);border:0.5px solid rgba(122,48,48,0.4)"></div>Errado</div>
+    <div class="legend-item" style="margin-left:2px;color:var(--muted);font-size:12px;">↑ maior &nbsp;↓ menor &nbsp;= igual (tamanho)</div>
+  </div>
+
+  <div id="input-area">
+    <div class="input-row">
+      <div class="input-wrap">
+        <input id="dino-input" type="text" placeholder="Digite um dinossauro..." autocomplete="off" spellcheck="false"/>
+        <div id="ac-list"></div>
+      </div>
+      <button id="guess-btn">Adivinhar</button>
+    </div>
+    <div id="err-msg"></div>
+  </div>
+
+  <div class="counter-row">
+    <p class="counter-text"><strong id="count-num">0</strong>/20 tentativas</p>
+    <div class="progress-bar"><div class="progress-fill" id="progress"></div></div>
+  </div>
+
+  <div id="result-banner">
+    <p class="result-title" id="result-title"></p>
+    <p class="result-sub" id="result-sub"></p>
+    <div class="result-img-wrap" id="result-img-wrap"></div>
+    <button class="share-btn" id="share-btn">Copiar resultado</button>
+    <p class="share-copied" id="share-copied"></p>
+  </div>
+
+  <div class="tbl-wrap">
+    <table class="guess-table" id="guess-table">
+      <thead>
+        <tr>
+          <th style="text-align:left">Dinossauro</th>
+          <th>Período</th>
+          <th>Dieta</th>
+          <th>Tamanho</th>
+          <th>Locomoção</th>
+          <th>Região</th>
+          <th>Família</th>
+        </tr>
+      </thead>
+      <tbody id="guess-body"></tbody>
+    </table>
+  </div>
+
+  <div class="howto">
+    <p class="howto-title">Como jogar</p>
+    <ul class="howto-list">
+      <li><span class="howto-num">1</span><span>Digite qualquer dinossauro — o autocomplete ajuda.</span></li>
+      <li><span class="howto-num">2</span><span><b style="color:var(--text)">Período:</b> amarelo = períodos adjacentes (ex: Jurássico ↔ Cretáceo).</span></li>
+      <li><span class="howto-num">3</span><span><b style="color:var(--text)">Tamanho:</b> ↑ o correto é maior que seu palpite, ↓ é menor, = é igual.</span></li>
+      <li><span class="howto-num">4</span><span><b style="color:var(--text)">Família:</b> badges verdes = nível taxonômico em comum.</span></li>
+      <li><span class="howto-num">5</span><span>Você tem <b style="color:var(--text)">20 tentativas</b>. Um novo dinossauro todo dia!</span></li>
+    </ul>
+  </div>
+</div>
+
+<footer>
+  <div class="wrap">DinoNana · Um novo dinossauro todo dia ·</div>
+</footer>
+
+<div class="toast" id="toast"></div>
+
+<!-- scripts (ordem IMPORTANTE) -->
+<script src="data.js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
