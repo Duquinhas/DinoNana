@@ -15,14 +15,18 @@ const FOTO_ANSWER  = DINOS[(DAY_IDX + FOTO_OFFSET) % DINOS.length];
 const P_ORDER = { "Triássico": 0, "Jurássico": 1, "Cretáceo": 2 };
  
 // Blur levels: index = number of wrong guesses (0–6)
-const BLUR_LEVELS = [16, 13, 10, 7, 4, 1, 0];
+const BLUR_LEVELS = [20,18,14,16, 12, 10, 8,5, 3, 1, 0];
 const BLUR_LABELS = [
-  "Máximo desfoque",
-  "Quase nada...",
-  "Algo aparece",
-  "Ficando mais claro",
-  "Está quase lá!",
-  "Muito perto!",
+  "Máximo desfoque — boa sorte!",
+  "Quase nada ainda...",
+  "Uma silhueta?",
+  "Algo está aparecendo",
+  "Ficando um pouco mais claro",
+  "Você consegue adivinhar?",
+  "Metade do caminho",
+  "Está ficando nítido",
+  "Quase revelado!",
+  "Última chance!",
   "Revelado!"
 ];
  
@@ -270,7 +274,7 @@ document.addEventListener('click',e=>{
 let fotoGuesses   = [];
 let fotoWrongCount = 0;   // only wrong guesses advance the blur
 let fotoGameOver  = false;
-const FOTO_MAX    = 6;
+const FOTO_MAX    = 10;
  
 // ── Setup image ───────────────────────────────────────────
 function fotoInit() {
