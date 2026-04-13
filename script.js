@@ -141,6 +141,45 @@ function renderStats(s) {
   document.getElementById('s-streak').textContent = s.streak||0;
   document.getElementById('s-best').textContent   = s.best||'—';
 }
+// ── Persistência do estado do jogo clássico ───────────────
+function classicSaveState(won) {
+  try {
+    localStorage.setItem('dz2_state', JSON.stringify({
+      day: DAY_KEY,
+      guesses: guesses.map(g => g.name),
+      gameOver,
+      won
+    }));
+  } catch {}
+}
+
+function classicRestoreState() {
+  try {
+    const saved = JSON.parse(localStorage.getItem('dz2_state') || 'null');
+    if (!saved || saved.day !== DAY_KEY) return; // dia diferente, jogo novo
+
+    // Reconstrói os palpites anteriores na tabela (sem animação)
+    saved.guesses.forEach(name => {
+      const dino = DINOS.find(d => d.name === name);
+      if (!dino) return;
+      guesses.push(dino);
+      const tbody = document.getElementById('guess-body');
+      const row = makeRow(dino);
+      row.querySelectorAll('td').forEach(td => td.style.animation = 'none');
+      tbody.insertBefore(row, tbody.firstChild);
+    });
+
+    const n = guesses.length;
+    document.getElementById('count-num').textContent = n;
+    document.getElementById('progress').style.width = (n / 20 * 100) + '%';
+
+    if (saved.gameOver) {
+      gameOver = true;
+      document.getElementById('input-area').style.display = 'none';
+      showResult(saved.won, n);
+    }
+  } catch {}
+}
  
 // ── Submit ────────────────────────────────────────────────
 function submit() {
@@ -174,6 +213,7 @@ function submit() {
     gameOver = true;
     document.getElementById('input-area').style.display='none';
     updateStats(win,n);
+     classicSaveState(win);
     setTimeout(() => showResult(win, n), 2000);
   }
 }
@@ -564,4 +604,5 @@ document.addEventListener('click',e=>{
    INIT
 ═══════════════════════════════════════════════════════════ */
 renderStats();
+classicRestoreState();
 fotoInit();
