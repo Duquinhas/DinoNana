@@ -284,7 +284,7 @@ function fotoInit() {
   // Show loading state
   wrap.style.background = 'var(--surface2)';
  
- img.src = FOTO_ANSWER.imgFoto;
+ img.src = FOTO_ANSWER.imgPhoto;
  img.alt = FOTO_ANSWER.common;
  img.onerror = () => { wrap.style.background = 'var(--surface2)'; };
  

@@ -54,7 +54,7 @@ body::before {
       rgba(200, 160, 80, 0.08),
       transparent 60%
     ),
-    url("https://www.transparenttextures.com/patterns/fossil.png");
+   ;
   opacity: 0.35;
 }
 .wrap {

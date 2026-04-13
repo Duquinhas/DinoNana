@@ -511,8 +511,8 @@ const DINOS = [
     size: 10,
     loco: "Ambos",
     region: "Europa",
-    imgClassic: "img/trex.png",
-    imgPhoto: "imgphoto/trex2.jpg",
+    imgClassic: "img/iguanodonte.webp",
+    imgPhoto: "imgphoto/inguanodon2.jpg",
   },
   {
     name: "Triceratops",
