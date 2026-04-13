@@ -25,7 +25,6 @@
   --red-t: #b86b6b;
   --red-bg: rgba(120, 60, 60, 0.2);
  
-  /* 🔥 FALTAVAM ESSES */
   --radius: 10px;
   --border: rgba(255, 255, 255, 0.06);
   --border2: rgba(255, 255, 255, 0.12);
@@ -40,7 +39,6 @@ body {
   font-size: 15px;
   line-height: 1.5;
   min-height: 100vh;
- 
   display: flex;
   flex-direction: column;
 }
@@ -50,7 +48,6 @@ body::before {
   inset: 0;
   z-index: 0;
   pointer-events: none;
- 
   background:
     radial-gradient(
       circle at 50% -10%,
@@ -58,7 +55,6 @@ body::before {
       transparent 60%
     ),
     url("https://www.transparenttextures.com/patterns/fossil.png");
- 
   opacity: 0.35;
 }
 .wrap {
@@ -67,7 +63,7 @@ body::before {
   max-width: 960px;
   margin: 0 auto;
   padding: 0 16px;
-  flex:1
+  flex: 1;
 }
  
 header {
@@ -95,6 +91,55 @@ header {
   color: var(--muted);
 }
  
+/* ── Tab bar ─────────────────────────────────────────────── */
+.tab-bar {
+  display: flex;
+  gap: 6px;
+  margin-bottom: 1.5rem;
+  background: var(--surface);
+  border: 0.5px solid var(--border);
+  border-radius: var(--radius);
+  padding: 5px;
+}
+.tab-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: transparent;
+  border: none;
+  border-radius: 7px;
+  color: var(--muted);
+  font-family: "DM Sans", sans-serif;
+  font-size: 14px;
+  font-weight: 500;
+  height: 40px;
+  cursor: pointer;
+  transition: background 0.18s, color 0.18s;
+}
+.tab-btn:hover {
+  background: var(--surface2);
+  color: var(--text);
+  transform: none;
+}
+.tab-btn.active {
+  background: var(--amber);
+  color: #0d0c09;
+}
+.tab-btn.active:hover {
+  background: var(--amber-l);
+}
+.tab-icon {
+  font-size: 16px;
+}
+.tab-label {
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: 0.02em;
+}
+ 
+/* ── Stats bar ───────────────────────────────────────────── */
 .stats-bar {
   display: flex;
   gap: 1px;
@@ -124,6 +169,7 @@ header {
   margin-top: 3px;
 }
  
+/* ── Legend ──────────────────────────────────────────────── */
 .legend {
   display: flex;
   gap: 10px;
@@ -145,6 +191,7 @@ header {
   flex-shrink: 0;
 }
  
+/* ── Input ───────────────────────────────────────────────── */
 .input-row {
   display: flex;
   gap: 8px;
@@ -184,9 +231,7 @@ button {
   height: 46px;
   padding: 0 20px;
   cursor: pointer;
-  transition:
-    background 0.15s,
-    transform 0.1s;
+  transition: background 0.15s, transform 0.1s;
   white-space: nowrap;
 }
 button:hover {
@@ -195,7 +240,7 @@ button:hover {
 button:active {
   transform: scale(0.97);
 }
-#err-msg {
+#err-msg, #foto-err-msg {
   font-size: 13px;
   color: var(--red-t);
   min-height: 18px;
@@ -203,7 +248,8 @@ button:active {
   padding: 0 2px;
 }
  
-#ac-list {
+/* ── Autocomplete ────────────────────────────────────────── */
+#ac-list, #foto-ac-list {
   display: none;
   position: absolute;
   top: calc(100% + 5px);
@@ -248,6 +294,7 @@ button:active {
   white-space: nowrap;
 }
  
+/* ── Counter ─────────────────────────────────────────────── */
 .counter-row {
   display: flex;
   align-items: center;
@@ -276,7 +323,7 @@ button:active {
   width: 0%;
 }
  
-/* Table */
+/* ── Table ───────────────────────────────────────────────── */
 .tbl-wrap {
   overflow-x: auto;
   margin-bottom: 1.5rem;
@@ -317,39 +364,26 @@ button:active {
   border-radius: 0 var(--radius) var(--radius) 0;
   padding-right: 10px;
 }
-.guess-row {
-  /* row itself doesn't animate — cells do individually */
-}
 @keyframes sd {
-  from {
-    opacity: 0;
-    transform: translateY(-7px);
-  }
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  from { opacity: 0; transform: translateY(-7px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
- 
-/* Staggered cell reveal */
 @keyframes cell-flip {
   0%   { opacity: 0; transform: scaleY(0.3) translateY(-6px); }
   55%  { transform: scaleY(1.06) translateY(1px); }
   100% { opacity: 1; transform: scaleY(1) translateY(0); }
 }
- 
 .guess-row td {
   opacity: 0;
-  animation: cell-flip 0.32s cubic-bezier(0.34, 1.3, 0.64, 1) forwards;
+  animation: cell-flip 0.48s cubic-bezier(0.34, 1.3, 0.64, 1) forwards;
 }
- 
 .guess-row td:nth-child(1) { animation-delay: 0.00s; }
-.guess-row td:nth-child(2) { animation-delay: 0.13s; }
-.guess-row td:nth-child(3) { animation-delay: 0.26s; }
-.guess-row td:nth-child(4) { animation-delay: 0.39s; }
-.guess-row td:nth-child(5) { animation-delay: 0.52s; }
-.guess-row td:nth-child(6) { animation-delay: 0.65s; }
-.guess-row td:nth-child(7) { animation-delay: 0.78s; }
+.guess-row td:nth-child(2) { animation-delay: 0.22s; }
+.guess-row td:nth-child(3) { animation-delay: 0.44s; }
+.guess-row td:nth-child(4) { animation-delay: 0.66s; }
+.guess-row td:nth-child(5) { animation-delay: 0.88s; }
+.guess-row td:nth-child(6) { animation-delay: 1.10s; }
+.guess-row td:nth-child(7) { animation-delay: 1.32s; }
  
 .dino-name {
   font-size: 13px;
@@ -361,7 +395,6 @@ button:active {
   color: var(--muted);
   font-style: italic;
 }
- 
 .cell {
   display: inline-flex;
   flex-direction: column;
@@ -372,14 +405,8 @@ button:active {
   min-width: 56px;
   gap: 1px;
 }
-.ci {
-  font-size: 14px;
-  line-height: 1;
-}
-.cv {
-  font-size: 10px;
-  line-height: 1.3;
-}
+.ci { font-size: 14px; line-height: 1; }
+.cv { font-size: 10px; line-height: 1.3; }
 .cell.g {
   background: var(--green-bg);
   color: var(--green-t);
@@ -398,12 +425,10 @@ button:active {
   border: 0.5px solid rgba(122, 48, 48, 0.35);
   animation: color-pop 0.18s 0.1s ease both;
 }
- 
 @keyframes color-pop {
   from { filter: saturate(0) brightness(0.6); }
   to   { filter: saturate(1) brightness(1); }
 }
- 
 .tax-row {
   display: flex;
   gap: 3px;
@@ -427,7 +452,7 @@ button:active {
   border: 0.5px solid rgba(122, 48, 48, 0.3);
 }
  
-/* Result */
+/* ── Result banner ───────────────────────────────────────── */
 #result-banner {
   display: none;
   background: var(--surface);
@@ -484,6 +509,7 @@ button:active {
   min-height: 16px;
 }
  
+/* ── Howto ───────────────────────────────────────────────── */
 .howto {
   background: var(--surface);
   border: 0.5px solid var(--border);
@@ -527,6 +553,7 @@ button:active {
   margin-top: 1px;
 }
  
+/* ── Footer ──────────────────────────────────────────────── */
 footer {
   border-top: 0.5px solid var(--border);
   padding: 0.5rem 0;
@@ -535,6 +562,8 @@ footer {
   color: var(--muted);
   margin-top: 1rem;
 }
+ 
+/* ── Toast ───────────────────────────────────────────────── */
 .toast {
   position: fixed;
   bottom: 22px;
@@ -554,31 +583,249 @@ footer {
   transform: translateX(-50%) translateY(0);
 }
  
+/* ── Background decorations ──────────────────────────────── */
 body::after {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
- 
-background-image: url("img/pezes.webp");  background-repeat: repeat-y;
+  background-image: url("img/pezes.webp");
+  background-repeat: repeat-y;
   background-size: 60px;
   background-position: left 10px top;
- 
   opacity: 0.12;
 }
- 
 .wrap::before {
   content: '';
   position: fixed;
   inset: 0;
   pointer-events: none;
   z-index: 0;
- 
   background-image: url("img/pezes.webp");
   background-repeat: repeat-y;
   background-size: 60px;
   background-position: right 10px top;
- 
   opacity: 0.12;
+}
+ 
+/* ═══════════════════════════════════════════════════════════
+   MODO FOTO
+═══════════════════════════════════════════════════════════ */
+ 
+/* Arena com a imagem */
+.foto-arena {
+  margin-bottom: 1.2rem;
+}
+ 
+.foto-blur-wrap {
+  position: relative;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto 0.75rem;
+  border-radius: 14px;
+  overflow: hidden;
+  background: var(--surface2);
+  aspect-ratio: 16/9;
+  border: 0.5px solid var(--border2);
+  box-shadow: 0 12px 40px rgba(0,0,0,0.5);
+}
+ 
+.foto-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+ 
+/* Subtle scanline texture over image */
+.foto-blur-wrap::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: repeating-linear-gradient(
+    0deg,
+    transparent,
+    transparent 2px,
+    rgba(0,0,0,0.04) 2px,
+    rgba(0,0,0,0.04) 4px
+  );
+  pointer-events: none;
+  z-index: 2;
+}
+ 
+/* Attempt badge top-right */
+.foto-attempt-badge {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: rgba(11,15,12,0.75);
+  backdrop-filter: blur(6px);
+  color: var(--amber-l);
+  font-size: 12px;
+  font-weight: 500;
+  padding: 4px 10px;
+  border-radius: 20px;
+  border: 0.5px solid rgba(196,162,76,0.3);
+  z-index: 3;
+  letter-spacing: 0.04em;
+}
+ 
+/* Meta row below image */
+.foto-meta-row {
+  max-width: 560px;
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 2px;
+}
+ 
+/* Pip progress dots */
+.blur-pip-row {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+}
+.pip {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--surface2);
+  border: 0.5px solid var(--border2);
+  transition: background 0.4s, transform 0.3s;
+}
+.pip.active {
+  background: var(--amber);
+  border-color: var(--amber);
+  transform: scale(1.2);
+}
+.pip.used-wrong {
+  background: var(--red-t);
+  border-color: var(--red-t);
+  transform: scale(1);
+}
+.pip.used-right {
+  background: var(--green-t);
+  border-color: var(--green-t);
+  transform: scale(1.2);
+}
+ 
+.foto-blur-text {
+  font-size: 11px;
+  color: var(--muted);
+  letter-spacing: 0.04em;
+}
+ 
+/* Guess list */
+.foto-guesses {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  margin-bottom: 1rem;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+}
+ 
+.foto-guess-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  background: var(--surface);
+  border-radius: var(--radius);
+  padding: 10px 14px;
+  border: 0.5px solid var(--border);
+  animation: foto-guess-in 0.28s cubic-bezier(0.34,1.3,0.64,1) both;
+}
+ 
+@keyframes foto-guess-in {
+  from { opacity: 0; transform: translateX(-10px) scale(0.97); }
+  to   { opacity: 1; transform: translateX(0) scale(1); }
+}
+ 
+.foto-guess-num {
+  font-size: 11px;
+  color: var(--muted);
+  width: 18px;
+  text-align: center;
+  flex-shrink: 0;
+}
+ 
+.foto-guess-icon {
+  font-size: 16px;
+  width: 24px;
+  text-align: center;
+  flex-shrink: 0;
+}
+ 
+.foto-guess-name {
+  flex: 1;
+  font-size: 14px;
+  font-weight: 500;
+}
+.foto-guess-name.wrong {
+  color: var(--red-t);
+  text-decoration: line-through;
+  opacity: 0.7;
+}
+.foto-guess-name.correct {
+  color: var(--green-t);
+}
+ 
+.foto-guess-sci {
+  font-size: 10px;
+  color: var(--muted);
+  font-style: italic;
+}
+ 
+.foto-skip-btn {
+  background: transparent;
+  border: 0.5px solid var(--border2);
+  color: var(--muted);
+  height: 38px;
+  padding: 0 14px;
+  font-size: 12px;
+  border-radius: var(--radius);
+  cursor: pointer;
+  transition: background 0.15s, color 0.15s;
+  white-space: nowrap;
+}
+.foto-skip-btn:hover {
+  background: var(--surface2);
+  color: var(--text);
+}
+ 
+/* Result banner foto */
+#foto-result-banner {
+  background: var(--surface);
+  border: 0.5px solid var(--amber);
+  border-radius: var(--radius);
+  padding: 1.8rem;
+  text-align: center;
+  margin-bottom: 1.5rem;
+  max-width: 560px;
+  margin-left: auto;
+  margin-right: auto;
+  animation: sd 0.35s ease;
+}
+ 
+/* Foto input area */
+#foto-input-area {
+  max-width: 560px;
+  margin: 0 auto 0.5rem;
+}
+#foto-input-area .input-row {
+  align-items: center;
+}
+ 
+/* Skip row */
+.foto-action-row {
+  display: flex;
+  gap: 8px;
+  max-width: 560px;
+  margin: 0 auto 1rem;
+}
+.foto-action-row button {
+  flex: 1;
 }
