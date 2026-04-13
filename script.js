@@ -95,7 +95,10 @@ function makeRow(dino) {
  
   const tr = document.createElement('tr');
   tr.className = 'guess-row';
-  tr.innerHTML = `
+ const thumbHtml = dino.imgClassic
+  ? `<img class="dino-thumb" src="${dino.imgClassic}" alt="${dino.common}" onerror="this.style.display='none'"/>`
+  : '';
+ tr.innerHTML = `
     <td>
       <div class="dino-name">${dino.common}</div>
       <div class="dino-sci">${dino.name}</div>

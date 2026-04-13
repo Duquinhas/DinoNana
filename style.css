@@ -347,11 +347,11 @@ button:active {
 .guess-table thead th:first-child {
   text-align: left;
   padding-left: 14px;
-  min-width: 130px;
+  min-width: 160px;
 }
 .guess-row td {
   background: var(--surface);
-  padding: 10px 4px;
+  padding: 14px 4px;
   vertical-align: middle;
   text-align: center;
 }
@@ -385,6 +385,7 @@ button:active {
 .guess-row td:nth-child(6) { animation-delay: 1.10s; }
 .guess-row td:nth-child(7) { animation-delay: 1.32s; }
  
+
 .dino-name {
   font-size: 13px;
   font-weight: 500;
