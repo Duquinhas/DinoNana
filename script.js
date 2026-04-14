@@ -344,8 +344,10 @@ function fotoInit() {
     fotoWrongCount = saved.wrongCount;
     fotoGameOver   = saved.gameOver;
     rebuildFotoUI();
-    if(fotoGameOver) {
+       if(fotoGameOver) {
       document.getElementById('foto-input-area').style.display='none';
+      document.getElementById('foto-img').style.filter = 'blur(0px)';  // ← adicionar
+      document.getElementById('foto-blur-text').textContent = 'Revelado!'; // ← adicionar
       showFotoResult(saved.won, fotoGuesses.length);
     }
   }

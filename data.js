@@ -36,7 +36,7 @@ const DINOS = [
     imgPhoto: "imgphoto/velociraptor2.webp",  },
   {
     name: "Deinonychus",
-    common: "Deinônique",
+    common: "Deinonico",
     path: ["Saurischia", "Theropoda", "Coelurosauria", "Dromaeosauridae"],
     period: "Cretáceo",
     diet: "Carnívoro",
@@ -72,7 +72,7 @@ const DINOS = [
   },
   {
     name: "Oviraptor",
-    common: "Ladrão de Ovos",
+    common: "Oviraptor",
     path: ["Saurischia", "Theropoda", "Coelurosauria", "Oviraptoridae"],
     period: "Cretáceo",
     diet: "Onívoro",
@@ -96,7 +96,7 @@ const DINOS = [
   },
   {
     name: "Gallimimus",
-    common: "Galimimim",
+    common: "Galimimus",
     path: ["Saurischia", "Theropoda", "Coelurosauria", "Ornithomimidae"],
     period: "Cretáceo",
     diet: "Onívoro",
@@ -120,7 +120,7 @@ const DINOS = [
   },
   {
     name: "Compsognathus",
-    common: "Compso",
+    common: "Compsognathus",
     path: ["Saurischia", "Theropoda", "Coelurosauria", "Compsognathidae"],
     period: "Jurássico",
     diet: "Carnívoro",
@@ -132,7 +132,7 @@ const DINOS = [
   },
   {
     name: "Spinosaurus",
-    common: "Espinhossauro",
+    common: "Espinossauro",
     path: ["Saurischia", "Theropoda", "Spinosauria", "Spinosauridae"],
     period: "Cretáceo",
     diet: "Piscívoro",
@@ -204,7 +204,7 @@ const DINOS = [
   },
   {
     name: "Carnotaurus",
-    common: "Touro Carnívoro",
+    common: "Carnotauro",
     path: ["Saurischia", "Theropoda", "Ceratosauria", "Abelisauridae"],
     period: "Cretáceo",
     diet: "Carnívoro",
@@ -252,7 +252,7 @@ const DINOS = [
   },
   {
     name: "Dilophosaurus",
-    common: "Dilofo",
+    common: "Dilofossauro",
     path: ["Saurischia", "Theropoda", "Coelophysoidea", "Dilophosauridae"],
     period: "Jurássico",
     diet: "Carnívoro",
@@ -593,7 +593,7 @@ const DINOS = [
   },
   {
     name: "Psittacosaurus",
-    common: "Papagaiossauro",
+    common: "Psitaco",
     path: ["Ornithischia", "Marginocephalia", "Ceratopsia", "Psittacosauridae"],
     period: "Cretáceo",
     diet: "Herbívoro",
@@ -605,7 +605,7 @@ const DINOS = [
   },
   {
     name: "Pachycephalosaurus",
-    common: "Cabeção",
+    common: "Paquicefalossauro",
     path: [
       "Ornithischia",
       "Marginocephalia",
