@@ -14,7 +14,7 @@ const FOTO_ANSWER  = DINOS[(DAY_IDX + FOTO_OFFSET) % DINOS.length];
  
 const P_ORDER = { "Triássico": 0, "Jurássico": 1, "Cretáceo": 2 };
  
-// Blur levels: index = number of wrong guesses (0–6)
+// Blur levels: index = number of wrong guesses (0–10)
 const BLUR_LEVELS = [20,18,14,16, 12, 10, 8,5, 3, 1, 0];
 const BLUR_LABELS = [
   "Máximo desfoque — boa sorte!",
