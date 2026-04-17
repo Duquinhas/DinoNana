@@ -6,11 +6,26 @@ const DAY_KEY = `${TODAY.getFullYear()}-${TODAY.getMonth()}-${TODAY.getDate()}`;
 const DAY_IDX = Math.floor(TODAY.getTime() / 86400000);
  
 // Classic answer
-const ANSWER  = DINOS[DAY_IDX % DINOS.length];
- 
-// Foto answer — offset by half the list so it's always different from classic
-const FOTO_OFFSET  = Math.floor(DINOS.length / 2);
-const FOTO_ANSWER  = DINOS[(DAY_IDX + FOTO_OFFSET) % DINOS.length];
+function seededRand(seed) {
+  let s = seed;
+  return function() {
+    s = (s * 1664525 + 1013904223) & 0xffffffff;
+    return (s >>> 0) / 0xffffffff;
+  };
+}
+
+function pickDaily(seed) {
+  const rand = seededRand(seed);
+  const pool = [...DINOS];
+  for(let i = pool.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [pool[i], pool[j]] = [pool[j], pool[i]];
+  }
+  return pool[DAY_IDX % pool.length];
+}
+
+const ANSWER      = pickDaily(DAY_IDX * 7 + 1);
+const FOTO_ANSWER = pickDaily(DAY_IDX * 7 + 2);
  
 const P_ORDER = { "Triássico": 0, "Jurássico": 1, "Cretáceo": 2 };
  

@@ -637,4 +637,180 @@ const DINOS = [
     imgClassic: "img/estygimoloch.webp",
     imgPhoto: "imgphoto/stygmoloch2.webp",
   },
+  {
+    name: "Albertaceratops",
+    common: "Albertacerátops",
+    path: [
+     "Ornithischia", "Marginocephalia", "Ceratopsia", "Ceratopsidae"
+    ],
+    period: "Cretáceo",
+    diet: "Herbívoro",
+    size: 6,
+    loco: "Quadrúpede",
+    region: "América do Norte",
+    imgClassic: "img/Albertaceratops.jpg",
+    imgPhoto: "imgphoto/alberta2.png",
+  },
+  {
+    name: "Albertosaurus",
+    common: "Albertossauro",
+    path: [
+      "Saurischia", "Theropoda", "Coelurosauria", "Tyrannosauridae"
+    ],
+    period: "Cretáceo",
+    diet: "Carnívoro",
+    size: 3,
+    loco: "Bípede",
+    region: "América do Norte",
+    imgClassic: "img/alberto.webp", 
+    imgPhoto: "imgphoto/alberto2.jpg",
+  },
+  {
+    name: "Archelon",
+    common: "Archelon",
+    path: [
+      "Testudines", "Cryptodira", "Chelonioidea", "Protostegidae"
+      
+    ],
+    period: "Cretáceo",
+    diet: "Herbívoro",
+    size: 4,
+    loco: "Aquático",
+    region: "América do Norte",
+    imgClassic: "img/archelon.webp",
+    imgPhoto: "imgphoto/archelon2.jpg",
+  },
+  {
+    name: "Beipiasaurus",
+    common: "Beipiassauro", 
+    path: [
+      "Saurischia", "Theropoda", "Coelurosauria", "Therizinosauridae"
+    ],
+    period: "Cretáceo",
+    diet: "Carnívoro" ,
+    size: 2,
+    loco: "Bípede",
+    region: "Ásia",
+    imgClassic: "img/beipiasaurus.webp",
+    imgPhoto: "imgphoto/Bipiasaurus2.jpg",
+  },
+  {
+    name: "Concavenator",
+    common: "Concavenator",
+    path: [
+      "Saurischia", "Theropoda", "Carnosauria", "Carcharodontosauridae"
+    ],
+    period: "Cretáceo",
+    diet: "Carnívoro",
+    size: 4,
+    loco: "Bípede",
+    region: "Europa",
+    imgClassic: "img/concavenator.jpg",
+    imgPhoto: "imgphoto/concavenator2.webp" ,
+  },
+  {
+    name: "Deinosuchus",
+    common: "Deinosuco",
+    
+    path: [
+      "Crocodylia", "Eusuchia", "Alligatoroidea", "Alligatoridae"
+    ],
+    period: "Cretáceo",
+    diet: "Carnívoro",
+    size: 10,
+    loco: "Aquático",
+    region: "América do Norte",
+    imgClassic: "img/deino.webp",
+    imgPhoto: "imgphoto/deinos2.jpg",
+  },
+  {
+    name: "Diabloceratops",
+    common: "Diablocerátops",
+    path: [
+      "Ornithischia", "Marginocephalia", "Ceratopsia", "Ceratopsidae"
+    ],
+    period: "Cretáceo",
+    diet: "Herbívoro",
+    size: 5,
+    loco: "Quadrúpede",
+    region: "América do Norte",
+    imgClassic: "img/diablo.jpg",
+    imgPhoto: "imgphoto/diablo2.jpg",
+  },
+   
+  ,
+  {
+    name: "Elamosaurus",
+    common: "Elamossauro",
+  
+    path: [
+      "Sauropterygia", "Plesiosauria", "Plesiosauroidea", "Elasmosauridae"
+    ],
+    period: "Cretáceo",
+    diet: "Carnívoro",
+    size: 14,
+    loco: "Aquático",
+    region: "América do Norte",
+    imgClassic: "img/Elasmossauro.webp",
+    imgPhoto: "imgphoto/elasmossauro.webp",
+  },
+  {
+    name: "ichthyvonator",
+    common: "Icthyvonator",
+    
+    path: [
+      "Saurischia","Theropoda","Spinosauridae"
+    ],
+    period: "Cretáceo",
+    diet: "Herbívoro",
+    size: 10,
+    loco: "Bípede",
+    region: "Ásia",
+    imgClassic: "img/ichty.webp",
+    imgPhoto: "imgphoto/ichty2.jpg",
+  },
+  {
+    name: "Kronosaurus",
+    common: "Kronossauro",
+    
+    path: [
+      "Sauropterygia", "Plesiosauria", "Pliosauroidae" 
+    ],
+    period: "Cretáceo",
+    diet: "Carnívoro",
+    size: 10,
+    loco: "Aquático",
+    region: "América do Sul",
+    imgClassic: "img/img/kronosaurus.png",
+    imgPhoto: "imgphoto/kronossauro2.webp",
+  },
+  {
+    name: "Mosasaurus",
+    common: "Mossassauro",
+    
+    path: [
+      "Squamata", "Anguimorpha", "Mosasauroidea", "Mosasauridae"
+    ],
+    period: "Cretáceo",
+    diet: "Carnívoro",
+    size: 11,
+    loco: "Aquático",
+    region: "Europa",
+    imgClassic: "img/img/mosassauro.webp",
+    imgPhoto: "imgphoto/mosassauro2.jpeg",
+  },
+  {
+    name: "Sarcosuchus",
+    common: "Sarcosuco",
+    path: [
+      "Crocodylia", "Eusuchia", "Notosuchia", "Peirosauridae"
+    ],
+    period: "Cretáceo",
+    diet: "Carnívoro",
+    size: 3,
+    loco: "Aquático ",
+    region: "América do Sul",
+    imgClassic: "img/sarcosuchus.webpp",
+    imgPhoto: "img/sarcosuchus.webpp",
+  },
 ];
