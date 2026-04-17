@@ -813,4 +813,18 @@ const DINOS = [
     imgClassic: "img/sarcosuchus.webpp",
     imgPhoto: "img/sarcosuchus.webpp",
   },
+  {
+    name: "Deinocheirus",
+    common: "Deinocheirus",
+    path: [
+      "Saurischia", "Theropoda", "Coelurosauria", "Ornithomimidae"
+    ],
+    period: "Cretáceo",
+    diet: "Herbívoro",
+    size: 11,
+    loco: "bípede",
+    region: "Ásia",
+    imgClassic: "img/Deinocheirus.webp",
+    imgPhoto: "imgphoto/deinocheirus2.webp",
+  },
 ];
