@@ -260,7 +260,7 @@ const DINOS = [
     loco: "Bípede",
     region: "América do Norte",
     imgClassic: "img/dilophosauro.webp",
-    imgPhoto: "imgphoto/dilophosauro2.jpg",
+    imgPhoto: "imgphoto/dilo2.webp",
   },
   {
     name: "Coelophysis",
