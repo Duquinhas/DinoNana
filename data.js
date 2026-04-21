@@ -808,10 +808,10 @@ const DINOS = [
     period: "Cretáceo",
     diet: "Carnívoro",
     size: 3,
-    loco: "Aquático ",
+    loco: "Aquático",
     region: "América do Sul",
-    imgClassic: "img/sarcosuchus.webpp",
-    imgPhoto: "img/sarcosuchus.webpp",
+    imgClassic: "img/sarcosuchus.webp",
+    imgPhoto: "img/sarcosuchus.webp",
   },
   {
     name: "Deinocheirus",
