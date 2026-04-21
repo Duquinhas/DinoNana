@@ -10,7 +10,7 @@ function seededRand(seed) {
   let s = seed;
   return function() {
     s = (s * 1664525 + 1013904223) & 0xffffffff;
-    return (s >>> 0) / 0xffffffff;
+    return (s >>> 0) / 0x100000000;  // ← era 0xffffffff, troque por 0x100000000
   };
 }
 
@@ -23,7 +23,7 @@ function pickDaily(seed) {
   }
   return pool[DAY_IDX % pool.length];
 }
-
+console.log('DINOS:', DINOS);
 const ANSWER      = pickDaily(DAY_IDX * 7 + 1);
 const FOTO_ANSWER = pickDaily(DAY_IDX * 7 + 2);
  

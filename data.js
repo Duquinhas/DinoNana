@@ -738,7 +738,7 @@ const DINOS = [
     imgPhoto: "imgphoto/diablo2.jpg",
   },
    
-  ,
+  
   {
     name: "Elamosaurus",
     common: "Elamossauro",
