@@ -822,7 +822,7 @@ const DINOS = [
     period: "Cretáceo",
     diet: "Herbívoro",
     size: 11,
-    loco: "bípede",
+    loco: "Bípede",
     region: "Ásia",
     imgClassic: "img/Deinocheirus.webp",
     imgPhoto: "imgphoto/deinocheirus2.webp",
