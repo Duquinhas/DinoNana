@@ -838,136 +838,125 @@ body::after {
 }
 
 @media (max-width: 600px) {
-
   html, body {
     overflow-x: hidden;
     width: 100%;
   }
 
-
-  .tbl-wrap {
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-  }
-  .guess-table {
-    min-width: 480px;
-  }
-
-  /* Stats bar não transborda */
-  .stats-bar {
-    overflow: hidden;
-  }
-
-  /* Tab bar não transborda */
-  .tab-bar {
-    overflow: hidden;
-  }
-
-  .logo {
-    font-size: 2.2rem;
-  }
   header {
     padding: 1.5rem 0 1rem;
     margin-bottom: 1rem;
   }
-  .tagline {
-    font-size: 11px;
-    letter-spacing: 0.1em;
+  .logo { font-size: 2.2rem; }
+  .tagline { font-size: 11px; letter-spacing: 0.1em; }
+  .wrap { padding: 0 12px; }
+
+  .tab-label { font-size: 12px; }
+  .tab-btn { height: 40px; gap: 5px; }
+
+  /* 1. STATUS BAR: Muda de 1x4 para um Grid 2x2 para melhor leitura */
+  .stats-bar {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1px;
+    background: var(--border);
   }
-  .wrap {
-    padding: 0 12px;
+  .stat { padding: 8px 4px; }
+  .stat-val { font-size: 18px; }
+  .stat-lbl { font-size: 10px; margin-top: 1px; }
+
+  .legend { gap: 8px; justify-content: center; }
+  .legend-item { font-size: 11px; }
+
+  /* =========================================================
+     2. A GRANDE MÁGICA: TABELA -> CARDS
+     ========================================================= */
+  .tbl-wrap {
+    overflow: visible; /* Remove o scroll horizontal nativo */
   }
-  .tab-label {
-    font-size: 12px;
-  }
-  .tab-btn {
-    height: 36px;
-    gap: 5px;
-  }
-  .stat-val {
-    font-size: 16px;
-  }
-  .stat-lbl {
-    font-size: 9px;
-  }
-  .stat {
-    padding: 10px 6px;
-  }
-  .legend {
-    gap: 6px;
-  }
-  .legend-item {
-    font-size: 11px;
-  }
-  .input-row {
-    flex-direction: column;
-  }
-  button#guess-btn,
-  button#foto-guess-btn {
+  .guess-table, .guess-table tbody, .guess-table tr, .guess-table td {
+    display: block;
     width: 100%;
   }
+  .guess-table thead {
+    display: none; /* Esconde os cabeçalhos tradicionais */
+  }
+  .guess-row {
+    background: var(--surface);
+    border: 0.5px solid var(--border);
+    border-radius: var(--radius);
+    margin-bottom: 12px;
+    padding: 12px;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 6px;
+    /* Anima o card inteiro caindo, no lugar da célula individual */
+    animation: sd 0.4s cubic-bezier(0.34, 1.3, 0.64, 1) forwards !important;
+  }
+  .guess-row td {
+    padding: 0 !important;
+    border: none !important;
+    background: transparent !important;
+    opacity: 1 !important;
+    animation: none !important; /* Desativa a animação antiga por célula */
+  }
+
+  /* Linha 1 do Card: Nome do Dino (Ocupa 100% da largura) */
+  .guess-row td:nth-child(1) {
+    width: 100%;
+    border-bottom: 0.5px solid var(--border2) !important;
+    padding-bottom: 8px !important;
+    margin-bottom: 4px;
+    text-align: center;
+  }
+  .dino-name { font-size: 16px; }
+  .dino-sci { font-size: 11px; }
+
+  /* Linha 2 do Card: 5 Atributos (Dividem o espaço em 5 colunas iguais) */
+  .guess-row td:nth-child(n+2):nth-child(-n+6) {
+    width: calc(20% - 4.8px);
+  }
   .cell {
-    min-width: 44px;
-    padding: 4px 4px;
+    width: 100%;
+    padding: 8px 2px;
+    min-width: auto;
   }
-  .ci {
-    font-size: 12px;
+
+  /* Linha 3 do Card: Taxonomia/Família (Ocupa 100% no rodapé do card) */
+  .guess-row td:nth-child(7) {
+    width: 100%;
+    margin-top: 6px;
   }
-  .cv {
-    font-size: 9px;
+  /* ========================================================= */
+
+  /* 3. INPUT E BOTÃO */
+  .input-row {
+    flex-direction: row; /* Mantém lado a lado, mas responsivo */
   }
-  .dino-name {
-    font-size: 12px;
+  input[type="text"] {
+    font-size: 16px !important; /* CRÍTICO: Previne auto-zoom no iOS Safari */
+    height: 44px;
   }
-  .dino-sci {
-    font-size: 9px;
+  button { height: 44px; }
+  button#guess-btn, button#foto-guess-btn {
+    width: auto;
+    padding: 0 14px;
   }
-  .dino-thumb {
-    width: 60px;
-    height: 42px;
-  }
-  .tm {
-    font-size: 8px;
-    padding: 2px 3px;
-  }
-  .counter-text {
-    font-size: 12px;
-  }
-  #result-banner,
-  #foto-result-banner {
-    padding: 1.2rem 1rem;
-  }
-  .result-title {
-    font-size: 1.3rem;
-  }
-  .result-sub {
-    font-size: 13px;
-  }
-  .foto-attempt-badge {
-    font-size: 11px;
-    padding: 3px 8px;
-  }
-  .foto-blur-text {
-    font-size: 10px;
-  }
-  .pip {
-    width: 7px;
-    height: 7px;
-  }
-  .foto-guess-name {
-    font-size: 13px;
-  }
-  .howto {
-    padding: 1rem;
-  }
-  .howto-list li {
-    font-size: 12px;
-  }
-  footer {
-    font-size: 10px;
-  }
-    .deco-dino-left,
-  .deco-dino-right {
-    display: none;
-}
+
+  .counter-text { font-size: 12px; }
+
+  #result-banner, #foto-result-banner { padding: 1.2rem 1rem; }
+  .result-title { font-size: 1.4rem; }
+  .result-sub { font-size: 13px; }
+
+  /* Ajustes do Modo Foto para Mobile */
+  .foto-attempt-badge { font-size: 11px; padding: 3px 8px; }
+  .foto-blur-text { font-size: 10px; }
+  .pip { width: 6px; height: 6px; }
+  .foto-guess-name { font-size: 13px; }
+  .foto-skip-btn { padding: 0 10px; font-size: 11px; height: 36px; }
+
+  .howto { padding: 1rem; }
+  .howto-list li { font-size: 12px; }
+  footer { font-size: 10px; }
 }
