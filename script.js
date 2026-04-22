@@ -92,10 +92,6 @@ function mkCell(f) {
   </div>`;
 }
  
-function isMobile() {
-  return window.innerWidth <= 600;
-}
-
 function makeRow(dino) {
   const pF = periodCell(dino.period, ANSWER.period);
   const dF = boolCell(dino.diet, ANSWER.diet, dino.diet);
@@ -113,52 +109,10 @@ function makeRow(dino) {
   `).join('');
 
   const thumbHtml = dino.imgClassic
-    ? `<img class="dino-thumb" src="${dino.imgClassic}" alt="${dino.common}" onerror="this.style.display='none'"/>`
+    ? `<img class="dino-thumb" src="${dino.imgClassic}" alt="" onerror="this.style.display='none'"/>`
     : '';
 
-  if(isMobile()) {
-    // ── Card layout para mobile ───────────────────────────
-    const card = document.createElement('div');
-    card.className = 'guess-card';
-    card.innerHTML = `
-      <div class="gc-header">
-        ${thumbHtml ? `<div class="gc-thumb">${thumbHtml}</div>` : ''}
-        <div class="gc-names">
-          <div class="dino-name">${dino.common}</div>
-          <div class="dino-sci">${dino.name}</div>
-        </div>
-      </div>
-      <div class="gc-grid">
-        <div class="gc-row">
-          <span class="gc-label">Período</span>
-          ${mkCell(pF)}
-        </div>
-        <div class="gc-row">
-          <span class="gc-label">Dieta</span>
-          ${mkCell(dF)}
-        </div>
-        <div class="gc-row">
-          <span class="gc-label">Tamanho</span>
-          ${mkCell(sF)}
-        </div>
-        <div class="gc-row">
-          <span class="gc-label">Locomoção</span>
-          ${mkCell(lF)}
-        </div>
-        <div class="gc-row">
-          <span class="gc-label">Região</span>
-          ${mkCell(rF)}
-        </div>
-        <div class="gc-row">
-          <span class="gc-label">Família</span>
-          <div class="tax-row">${taxHtml}</div>
-        </div>
-      </div>
-    `;
-    return card;
-  }
-
-  // ── Linha de tabela para desktop ─────────────────────────
+  // ── Linha de tabela (desktop) ─────────────────────────────
   const tr = document.createElement('tr');
   tr.className = 'guess-row';
   tr.innerHTML = `
@@ -174,7 +128,30 @@ function makeRow(dino) {
     <td>${mkCell(rF)}</td>
     <td><div class="tax-row">${taxHtml}</div></td>
   `;
-  return tr;
+
+  // ── Card (mobile) ─────────────────────────────────────────
+  const card = document.createElement('div');
+  card.className = 'guess-card';
+  card.innerHTML = `
+    <div class="gc-header">
+      ${thumbHtml ? `<div class="gc-thumb">${thumbHtml}</div>` : ''}
+      <div class="gc-names">
+        <div class="dino-name">${dino.common}</div>
+        <div class="dino-sci">${dino.name}</div>
+      </div>
+    </div>
+    <div class="gc-grid">
+      <div class="gc-row"><span class="gc-label">Período</span>${mkCell(pF)}</div>
+      <div class="gc-row"><span class="gc-label">Dieta</span>${mkCell(dF)}</div>
+      <div class="gc-row"><span class="gc-label">Tamanho</span>${mkCell(sF)}</div>
+      <div class="gc-row"><span class="gc-label">Locomoção</span>${mkCell(lF)}</div>
+      <div class="gc-row"><span class="gc-label">Região</span>${mkCell(rF)}</div>
+      <div class="gc-row"><span class="gc-label">Família</span><div class="tax-row">${taxHtml}</div></div>
+    </div>
+  `;
+
+  // Retorna os dois — CSS decide qual mostrar
+  return { tr, card };
 }
  
 // ── Stats ─────────────────────────────────────────────────
@@ -226,16 +203,11 @@ function classicRestoreState() {
       const dino = DINOS.find(d => d.name === name);
       if (!dino) return;
       guesses.push(dino);
-      const el = makeRow(dino);
-      if(isMobile()) {
-        const cardContainer = document.getElementById('cards-body');
-        el.querySelectorAll('.guess-card').forEach(c => c.style.animation = 'none');
-        cardContainer.insertBefore(el, cardContainer.firstChild);
-      } else {
-        const tbody = document.getElementById('guess-body');
-        el.querySelectorAll('td').forEach(td => td.style.animation = 'none');
-        tbody.insertBefore(el, tbody.firstChild);
-      }
+      const { tr, card } = makeRow(dino);
+      tr.querySelectorAll('td').forEach(td => td.style.animation = 'none');
+      document.getElementById('guess-body').insertBefore(tr, document.getElementById('guess-body').firstChild);
+      card.style.animation = 'none';
+      document.getElementById('cards-body').insertBefore(card, document.getElementById('cards-body').firstChild);
     });
 
     const n = guesses.length;
@@ -274,14 +246,9 @@ function submit() {
   document.getElementById('count-num').textContent = n;
   document.getElementById('progress').style.width = (n/20*100)+'%';
 
-  const el = makeRow(found);
-  if(isMobile()) {
-    const cardContainer = document.getElementById('cards-body');
-    cardContainer.insertBefore(el, cardContainer.firstChild);
-  } else {
-    const tbody = document.getElementById('guess-body');
-    tbody.insertBefore(el, tbody.firstChild);
-  }
+  const { tr, card } = makeRow(found);
+  document.getElementById('guess-body').insertBefore(tr, document.getElementById('guess-body').firstChild);
+  document.getElementById('cards-body').insertBefore(card, document.getElementById('cards-body').firstChild);
  
   const win = found.name === ANSWER.name;
   if(win || n >= 20) {
