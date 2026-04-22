@@ -966,4 +966,7 @@ body::after {
   footer {
     font-size: 10px;
   }
-}
+    .deco-dino-left,
+  .deco-dino-right {
+    display: none;
+}}
