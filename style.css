@@ -836,3 +836,110 @@ body::after {
 .foto-action-row button {
   flex: 1;
 }
+
+@media (max-width: 600px) {
+
+  .logo {
+    font-size: 2.2rem;
+  }
+  header {
+    padding: 1.5rem 0 1rem;
+    margin-bottom: 1rem;
+  }
+  .tagline {
+    font-size: 11px;
+    letter-spacing: 0.1em;
+  }
+  .wrap {
+    padding: 0 12px;
+  }
+  .tab-label {
+    font-size: 12px;
+  }
+  .tab-btn {
+    height: 36px;
+    gap: 5px;
+  }
+  .stat-val {
+    font-size: 16px;
+  }
+  .stat-lbl {
+    font-size: 9px;
+  }
+  .stat {
+    padding: 10px 6px;
+  }
+  .legend {
+    gap: 6px;
+  }
+  .legend-item {
+    font-size: 11px;
+  }
+  .input-row {
+    flex-direction: column;
+  }
+  button#guess-btn,
+  button#foto-guess-btn {
+    width: 100%;
+  }
+  .cell {
+    min-width: 44px;
+    padding: 4px 4px;
+  }
+  .ci {
+    font-size: 12px;
+  }
+  .cv {
+    font-size: 9px;
+  }
+  .dino-name {
+    font-size: 12px;
+  }
+  .dino-sci {
+    font-size: 9px;
+  }
+  .dino-thumb {
+    width: 60px;
+    height: 42px;
+  }
+  .tm {
+    font-size: 8px;
+    padding: 2px 3px;
+  }
+  .counter-text {
+    font-size: 12px;
+  }
+  #result-banner,
+  #foto-result-banner {
+    padding: 1.2rem 1rem;
+  }
+  .result-title {
+    font-size: 1.3rem;
+  }
+  .result-sub {
+    font-size: 13px;
+  }
+  .foto-attempt-badge {
+    font-size: 11px;
+    padding: 3px 8px;
+  }
+  .foto-blur-text {
+    font-size: 10px;
+  }
+  .pip {
+    width: 7px;
+    height: 7px;
+  }
+  .foto-guess-name {
+    font-size: 13px;
+  }
+  .howto {
+    padding: 1rem;
+  }
+  .howto-list li {
+    font-size: 12px;
+  }
+  footer {
+    font-size: 10px;
+  }
+}
