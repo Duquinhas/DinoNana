@@ -92,6 +92,10 @@ function mkCell(f) {
   </div>`;
 }
  
+function isMobile() {
+  return window.innerWidth <= 600;
+}
+
 function makeRow(dino) {
   const pF = periodCell(dino.period, ANSWER.period);
   const dF = boolCell(dino.diet, ANSWER.diet, dino.diet);
@@ -107,14 +111,59 @@ function makeRow(dino) {
   const taxHtml = tax.map(t=>`
     <span class="tm ${t.c}">${t.v.length>13 ? t.v.slice(0,12)+'…' : t.v}</span>
   `).join('');
- 
+
+  const thumbHtml = dino.imgClassic
+    ? `<img class="dino-thumb" src="${dino.imgClassic}" alt="${dino.common}" onerror="this.style.display='none'"/>`
+    : '';
+
+  if(isMobile()) {
+    // ── Card layout para mobile ───────────────────────────
+    const card = document.createElement('div');
+    card.className = 'guess-card';
+    card.innerHTML = `
+      <div class="gc-header">
+        ${thumbHtml ? `<div class="gc-thumb">${thumbHtml}</div>` : ''}
+        <div class="gc-names">
+          <div class="dino-name">${dino.common}</div>
+          <div class="dino-sci">${dino.name}</div>
+        </div>
+      </div>
+      <div class="gc-grid">
+        <div class="gc-row">
+          <span class="gc-label">Período</span>
+          ${mkCell(pF)}
+        </div>
+        <div class="gc-row">
+          <span class="gc-label">Dieta</span>
+          ${mkCell(dF)}
+        </div>
+        <div class="gc-row">
+          <span class="gc-label">Tamanho</span>
+          ${mkCell(sF)}
+        </div>
+        <div class="gc-row">
+          <span class="gc-label">Locomoção</span>
+          ${mkCell(lF)}
+        </div>
+        <div class="gc-row">
+          <span class="gc-label">Região</span>
+          ${mkCell(rF)}
+        </div>
+        <div class="gc-row">
+          <span class="gc-label">Família</span>
+          <div class="tax-row">${taxHtml}</div>
+        </div>
+      </div>
+    `;
+    return card;
+  }
+
+  // ── Linha de tabela para desktop ─────────────────────────
   const tr = document.createElement('tr');
   tr.className = 'guess-row';
- const thumbHtml = dino.imgClassic
-  ? `<img class="dino-thumb" src="${dino.imgClassic}" alt="${dino.common}" onerror="this.style.display='none'"/>`
-  : '';
- tr.innerHTML = `
+  tr.innerHTML = `
     <td>
+      ${thumbHtml}
       <div class="dino-name">${dino.common}</div>
       <div class="dino-sci">${dino.name}</div>
     </td>
@@ -160,8 +209,7 @@ function renderStats(s) {
 function classicSaveState(won) {
   try {
     localStorage.setItem('dz2_state', JSON.stringify({
-      v: 2,
-      day: DAY_IDX,
+      day: DAY_KEY,
       guesses: guesses.map(g => g.name),
       gameOver,
       won
@@ -172,17 +220,22 @@ function classicSaveState(won) {
 function classicRestoreState() {
   try {
     const saved = JSON.parse(localStorage.getItem('dz2_state') || 'null');
-   if (!saved || saved.day !== DAY_IDX || saved.v !== 2) return; // dia diferente, jogo novo
+    if (!saved || saved.day !== DAY_KEY) return; // dia diferente, jogo novo
 
-    // Reconstrói os palpites anteriores na tabela (sem animação)
     saved.guesses.forEach(name => {
       const dino = DINOS.find(d => d.name === name);
       if (!dino) return;
       guesses.push(dino);
-      const tbody = document.getElementById('guess-body');
-      const row = makeRow(dino);
-      row.querySelectorAll('td').forEach(td => td.style.animation = 'none');
-      tbody.insertBefore(row, tbody.firstChild);
+      const el = makeRow(dino);
+      if(isMobile()) {
+        const cardContainer = document.getElementById('cards-body');
+        el.querySelectorAll('.guess-card').forEach(c => c.style.animation = 'none');
+        cardContainer.insertBefore(el, cardContainer.firstChild);
+      } else {
+        const tbody = document.getElementById('guess-body');
+        el.querySelectorAll('td').forEach(td => td.style.animation = 'none');
+        tbody.insertBefore(el, tbody.firstChild);
+      }
     });
 
     const n = guesses.length;
@@ -220,9 +273,15 @@ function submit() {
   const n = guesses.length;
   document.getElementById('count-num').textContent = n;
   document.getElementById('progress').style.width = (n/20*100)+'%';
- 
-  const tbody = document.getElementById('guess-body');
-  tbody.insertBefore(makeRow(found), tbody.firstChild);
+
+  const el = makeRow(found);
+  if(isMobile()) {
+    const cardContainer = document.getElementById('cards-body');
+    cardContainer.insertBefore(el, cardContainer.firstChild);
+  } else {
+    const tbody = document.getElementById('guess-body');
+    tbody.insertBefore(el, tbody.firstChild);
+  }
  
   const win = found.name === ANSWER.name;
   if(win || n >= 20) {
@@ -355,7 +414,7 @@ function fotoInit() {
  
   // restore state from localStorage if same day
   const saved = fotoLoadState();
-  if(saved && saved.day === DAY_IDX && saved.v === 2) {
+  if(saved && saved.day === DAY_KEY) {
     fotoGuesses    = saved.guesses;
     fotoWrongCount = saved.wrongCount;
     fotoGameOver   = saved.gameOver;
@@ -555,7 +614,7 @@ function renderFotoStats(s) {
 function fotoSaveState(won) {
   try {
     localStorage.setItem('dinofoto_state', JSON.stringify({
-      v: 2, day: DAY_IDX, guesses: fotoGuesses, wrongCount: fotoWrongCount,
+      day: DAY_KEY, guesses: fotoGuesses, wrongCount: fotoWrongCount,
       gameOver: fotoGameOver, won
     }));
   } catch {}
