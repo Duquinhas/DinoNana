@@ -839,6 +839,30 @@ body::after {
 
 @media (max-width: 600px) {
 
+  html, body {
+    overflow-x: hidden;
+    width: 100%;
+  }
+
+
+  .tbl-wrap {
+    overflow-x: auto;
+    -webkit-overflow-scrolling: touch;
+  }
+  .guess-table {
+    min-width: 480px;
+  }
+
+  /* Stats bar não transborda */
+  .stats-bar {
+    overflow: hidden;
+  }
+
+  /* Tab bar não transborda */
+  .tab-bar {
+    overflow: hidden;
+  }
+
   .logo {
     font-size: 2.2rem;
   }
