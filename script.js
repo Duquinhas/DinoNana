@@ -10,22 +10,46 @@ function seededRand(seed) {
   let s = seed;
   return function() {
     s = (s * 1664525 + 1013904223) & 0xffffffff;
-    return (s >>> 0) / 0x100000000;  // ← era 0xffffffff, troque por 0x100000000
+    return (s >>> 0) / 0x100000000;
   };
 }
 
-function pickDaily(seed) {
-  const rand = seededRand(seed);
-  const pool = [...DINOS];
-  for(let i = pool.length - 1; i > 0; i--) {
-    const j = Math.floor(rand() * (i + 1));
-    [pool[i], pool[j]] = [pool[j], pool[i]];
-  }
-  return pool[DAY_IDX % pool.length];
+// ── Histórico dos últimos dias (anti-repetição) ───────────
+function getHistory() {
+  try { return JSON.parse(localStorage.getItem('dz2_history') || '[]'); } catch { return []; }
 }
-console.log('DINOS:', DINOS);
-const ANSWER      = pickDaily(DAY_IDX * 7 + 1);
-const FOTO_ANSWER = pickDaily(DAY_IDX * 7 + 2);
+function saveHistory(classicName, fotoName) {
+  try {
+    let h = getHistory().filter(e => e.day !== DAY_IDX && e.day > DAY_IDX - 14);
+    h.push({ day: DAY_IDX, classicName, fotoName });
+    localStorage.setItem('dz2_history', JSON.stringify(h));
+  } catch {}
+}
+
+// Nomes usados nos últimos 7 dias (exceto hoje)
+const _history     = getHistory();
+const _recentNames = _history
+  .filter(e => e.day !== DAY_IDX && e.day > DAY_IDX - 7)
+  .flatMap(e => [e.classicName, e.fotoName].filter(Boolean));
+
+function pickDaily(seed, blacklist) {
+  const rand = seededRand(seed);
+  // Remove da pool quem foi usado recentemente; se sobrar menos de 5, ignora blacklist
+  const full = [...DINOS];
+  const pool = full.filter(d => !blacklist.includes(d.name));
+  const safe = pool.length >= 5 ? pool : full;
+  for(let i = safe.length - 1; i > 0; i--) {
+    const j = Math.floor(rand() * (i + 1));
+    [safe[i], safe[j]] = [safe[j], safe[i]];
+  }
+  return safe[DAY_IDX % safe.length];
+}
+
+const ANSWER      = pickDaily(DAY_IDX * 7 + 1, _recentNames);
+const FOTO_ANSWER = pickDaily(DAY_IDX * 7 + 2, [..._recentNames, ANSWER?.name].filter(Boolean));
+
+// Salva os escolhidos de hoje no histórico
+saveHistory(ANSWER?.name, FOTO_ANSWER?.name);
  
 const P_ORDER = { "Triássico": 0, "Jurássico": 1, "Cretáceo": 2 };
  
