@@ -184,7 +184,7 @@ function renderStats(s) {
 function classicSaveState(won) {
   try {
     localStorage.setItem('dz2_state', JSON.stringify({
-      v: 2,
+      v: 3,
       day: DAY_IDX,
       guesses: guesses.map(g => g.name),
       gameOver,
@@ -196,7 +196,7 @@ function classicSaveState(won) {
 function classicRestoreState() {
   try {
     const saved = JSON.parse(localStorage.getItem('dz2_state') || 'null');
-   if (!saved || saved.day !== DAY_IDX || saved.v !== 2) return; // dia diferente, jogo novo
+   if (!saved || saved.day !== DAY_IDX || saved.v !== 3) return; // dia diferente, jogo novo
 
     // Reconstrói os palpites anteriores na tabela (sem animação)
     saved.guesses.forEach(name => {
@@ -379,7 +379,7 @@ function fotoInit() {
  
   // restore state from localStorage if same day
   const saved = fotoLoadState();
-  if(saved && saved.day === DAY_IDX && saved.v === 2) {
+  if(saved && saved.day === DAY_IDX && saved.v === 3) {
     fotoGuesses    = saved.guesses;
     fotoWrongCount = saved.wrongCount;
     fotoGameOver   = saved.gameOver;
@@ -579,7 +579,7 @@ function renderFotoStats(s) {
 function fotoSaveState(won) {
   try {
     localStorage.setItem('dinofoto_state', JSON.stringify({
-      v: 2, day: DAY_IDX, guesses: fotoGuesses, wrongCount: fotoWrongCount,
+      v: 3, day: DAY_IDX, guesses: fotoGuesses, wrongCount: fotoWrongCount,
       gameOver: fotoGameOver, won
     }));
   } catch {}
