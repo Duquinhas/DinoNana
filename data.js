@@ -272,7 +272,7 @@ const DINOS = [
     loco: "Bípede",
     region: "América do Norte",
     imgClassic: "img/coelophysys.webp",
-    imgPhoto: "imgphoto/trex2.jpg",
+    imgPhoto: "imgphoto/coelophysys2.webp",
   },
   {
     name: "Brontosaurus",
