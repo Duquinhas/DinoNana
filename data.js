@@ -464,7 +464,7 @@ const DINOS = [
     loco: "Ambos",
     region: "América do Norte",
     imgClassic: "img/edmontosauro.webp",
-    imgPhoto: "iimgphoto/edmontosauro2.jpg",
+    imgPhoto: "imgphoto/edmontosauro2.jpg",
   },
   {
     name: "Maiasaura",
