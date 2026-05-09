@@ -283,8 +283,8 @@ const DINOS = [
     size: 22,
     loco: "Quadrúpede",
     region: "América do Norte",
-    imgClassic: "img/coelophysys.webp",
-    imgPhoto: "imgphoto/coelophysys2.webp",
+    imgClassic: "img/brontosauro.webp",
+    imgPhoto: "imgphoto/brontosauro2.webp",
   },
   {
     name: "Diplodocus",
@@ -659,7 +659,7 @@ const DINOS = [
     ],
     period: "Cretáceo",
     diet: "Carnívoro",
-    size: 3,
+    size: 9,
     loco: "Bípede",
     region: "América do Norte",
     imgClassic: "img/alberto.webp", 
@@ -692,7 +692,7 @@ const DINOS = [
     loco: "Bípede",
     region: "Ásia",
     imgClassic: "img/beipiasaurus.webp",
-    imgPhoto: "imgphoto/Bipiasaurus2.jpg",
+    imgPhoto: "imgphoto/Beipiaosaurus2.jpg",
   },
   {
     name: "Concavenator",
