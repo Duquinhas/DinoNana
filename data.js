@@ -827,4 +827,131 @@ const DINOS = [
     imgClassic: "img/Deinocheirus.webp",
     imgPhoto: "imgphoto/deinocheirus2.webp",
   },
+  {
+    name: "Hatzegopteryx",
+    common: "Hatzegopteryx",
+    path: [
+      "Pterosauria", "Pterodactyloidea", "Azhdarchoidea", "Hatzegopterygia"
+    ],
+    period: "Cretáceo",
+    diet: "Carnívoro",
+    size: 11,
+    loco: "Voador",
+    region: "Europa",
+    imgClassic: "img/hatz.webp",
+    imgPhoto: "imgphoto/Hatzegopteryx2.webp",
+  },
+  {
+    name: "Dimorphodon",
+    common: "Dimorfodonte",
+    path: [
+      "Pterosauria", "Macronychoptera", "Dimorphodontidae", 
+    ],
+    period: "Jurássico",
+    diet: "Carnívoro",
+    size: 1,
+    loco: "Voador",
+    region: "Europa",
+    imgClassic: "img/Dimophordon.jpg",
+    imgPhoto: "imgphoto/Dimorphodon2.jpg",
+  },
+  {
+    name: "Rhamphorhynchus",
+    common: "Ranforrinco",
+    path: [
+      "Pterosauria", "Rhamphorhynchidae"
+    ],
+    period: "Jurássico",
+    diet: "Carnívoro",
+    size: 0.5,
+    loco: "Voador",
+    region: "Europa",
+    imgClassic: "img/Rhamphorhynchus.jpg",
+    imgPhoto: "imgphoto/rhamphornychus2.jpg",
+  },
+  {
+    name: "Tupandactylus",
+    common: "Tupandactylus",
+    path: [
+      "Pterosauria", "Azhdarchoidea", "Tapejaridae","Tapejarinae"
+    ],
+    period: "Cretáceo",
+    diet: "Carnívoro",
+    size: 4,
+    loco: "Voador",
+    region: "América do Sul",
+    imgClassic: "img/img/tupandactylus.jpg",
+    imgPhoto: "imgphoto/tupandactylus2.jpg",
+  },
+  {
+    name: "Quetzalcoatlus",
+    common: "Quetzalcoatlus",
+    path: [
+      "Pterosauria", "Azhdarchoidea", "Quetzalcoatlidae"
+    ],
+    period: "Cretáceo",
+    diet: "Carnívoro",
+    size: 12,
+    loco: "Voador",
+    region: "Ámérica do Norte",
+    imgClassic: "img/Quetzalcoatlus.webp",
+    imgPhoto: "imgphoto/Quetzalcoatlus2.jpg",
+  },
+  
+  {
+    name: "Pterodactylus",
+    common: "Pterodáctilo",
+    path: [
+      "Pterosauria", "Pterodactyloidea", "Pterodactylidae"
+    ],
+    period: "Jurássico",
+    diet: "Herbívoro",
+    size: 1,
+    loco: "Voador",
+    region: "Europa",
+    imgClassic: "img/ptero.jpg",
+    imgPhoto: "imgphoto/pterodactyl.PNG",
+  },
+  {
+    name: "Pterodaustro",
+    common: "Pterodaustro",
+    path: [
+      "Pterosauria", "Pterodactyloidea", "Ctenochasmatidae"
+    ],
+    period: "Cretáceo",
+    diet: "Herbívoro",
+    size: 3,
+    loco: "Voador",
+    region: "América do Sul",
+    imgClassic: "img/Pterodaustro.jpg",
+    imgPhoto: "imgphoto/Pterodaustro2.jpg",
+  },
+  {
+    name: "Moganopterus",
+    common: "Moganopterus",
+    path: [
+      "Pterosauria", "†Ctenochasmatidae", "Moganopteridae"
+    ],
+    period: "Cretáceo",
+    diet: "Carnívoro",
+    size: 3,
+    loco: "Voador",
+    region: "Ásia",
+    imgClassic:"img/moganopterus.png",
+    imgPhoto: "imgphoto/moganopterus2.jpg",
+  },
+  {
+    name: "Pteranodon",
+    common: "Pteranodon",
+    path: [
+      "Pterosauria", "Pterodactyloidea", "Pteranodontidae"
+    ],
+    period: "Cretáceo",
+    diet: "Carnívoro",
+    size: 7,
+    loco: "Voador",
+    region: "Ámérica do Norte",
+    imgClassic:"img/pteranodonte.webp",
+    imgPhoto: "imgphoto/pteranodon2.webp",
+  },
 ];
