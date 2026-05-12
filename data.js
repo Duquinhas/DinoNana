@@ -905,7 +905,7 @@ const DINOS = [
       "Pterosauria", "Pterodactyloidea", "Pterodactylidae"
     ],
     period: "Jurássico",
-    diet: "Herbívoro",
+    diet: "Carnívoro",
     size: 1,
     loco: "Voador",
     region: "Europa",
@@ -919,7 +919,7 @@ const DINOS = [
       "Pterosauria", "Pterodactyloidea", "Ctenochasmatidae"
     ],
     period: "Cretáceo",
-    diet: "Herbívoro",
+    diet: "Carnívoro",
     size: 3,
     loco: "Voador",
     region: "América do Sul",
