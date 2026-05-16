@@ -863,7 +863,7 @@ const DINOS = [
     ],
     period: "Jurássico",
     diet: "Carnívoro",
-    size: 0.5,
+    size: 1,
     loco: "Voador",
     region: "Europa",
     imgClassic: "img/Rhamphorhynchus.jpg",
