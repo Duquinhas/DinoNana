@@ -880,7 +880,7 @@ const DINOS = [
     size: 4,
     loco: "Voador",
     region: "América do Sul",
-    imgClassic: "img/img/tupandactylus.jpg",
+    imgClassic: "img/tupandactylus.jpg",
     imgPhoto: "imgphoto/tupandactylus2.jpg",
   },
   {
