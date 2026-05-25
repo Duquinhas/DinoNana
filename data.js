@@ -721,7 +721,7 @@ const DINOS = [
     loco: "Aquático",
     region: "América do Norte",
     imgClassic: "img/deino.webp",
-    imgPhoto: "imgphoto/deinos2.jpg",
+    imgPhoto: "imgphoto/deino2.jpg",
   },
   {
     name: "Diabloceratops",
