@@ -766,8 +766,8 @@ const DINOS = [
     size: 10,
     loco: "Bípede",
     region: "Ásia",
-    imgClassic: "img/ichty.webp",
-    imgPhoto: "imgphoto/ichty2.jpg",
+    imgClassic:"img/ichty.webp",
+    imgPhoto: "imgphoto/icthy2.jpg",
   },
   {
     name: "Kronosaurus",
