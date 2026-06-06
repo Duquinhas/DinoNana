@@ -762,7 +762,7 @@ const DINOS = [
       "Saurischia","Theropoda","Spinosauridae"
     ],
     period: "Cretáceo",
-    diet: "Herbívoro",
+    diet: "Carnívoro",
     size: 10,
     loco: "Bípede",
     region: "Ásia",
