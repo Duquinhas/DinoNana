@@ -21,7 +21,7 @@ const DINOS = [
     loco: "Bípede",
     region: "Ásia",
     imgClassic: "img/tarbo2.webp",
-    imgPhoto: "imgphoto/tarbo.webp",
+    imgPhoto: "imgphoto/Tarbo.webp",
   },
   {
     name: "Velociraptor",
@@ -572,7 +572,7 @@ const DINOS = [
     loco: "Quadrúpede",
     region: "América do Norte",
     imgClassic: "img/Pachyrhinosaurus.webp",
-    imgPhoto: "imgphoto/pachyrhinsaurus2.webp",
+    imgPhoto: "imgphoto/Pachyrhinosaurus2.webp",
   },
   {
     name: "Protoceratops",
@@ -589,7 +589,7 @@ const DINOS = [
     loco: "Quadrúpede",
     region: "Ásia",
     imgClassic: "img/Protoceratops.jpg",
-    imgPhoto: "imgphoto/protoceratops2.webp",
+    imgPhoto: "imgphoto/proto2.webp",
   },
   {
     name: "Psittacosaurus",
