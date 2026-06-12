@@ -46,7 +46,8 @@ function pickDaily(seed, blacklist) {
 }
 
 // ── Dia dos Namorados 💕 ──────────────────────────────────
-const IS_VALENTINES = TODAY.getMonth() === 5 && TODAY.getDate() === 12;
+const BRT = new Date(TODAY.toLocaleString('en-US', {timeZone: 'America/Sao_Paulo'}));
+const IS_VALENTINES = BRT.getMonth() === 5 && BRT.getDate() === 12;
 
 // No dia dos namorados, o clássico não tem resposta certa — mas o foto funciona normal
 const ANSWER      = IS_VALENTINES ? null : pickDaily(DAY_IDX * 7 + 1, _recentNames);
