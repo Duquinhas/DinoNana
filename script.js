@@ -45,7 +45,11 @@ function pickDaily(seed, blacklist) {
   return safe[DAY_IDX % safe.length];
 }
 
-const ANSWER      = pickDaily(DAY_IDX * 7 + 1, _recentNames);
+// ── Dia dos Namorados 💕 ──────────────────────────────────
+const IS_VALENTINES = TODAY.getMonth() === 5 && TODAY.getDate() === 12;
+
+// No dia dos namorados, o clássico não tem resposta certa — mas o foto funciona normal
+const ANSWER      = IS_VALENTINES ? null : pickDaily(DAY_IDX * 7 + 1, _recentNames);
 const FOTO_ANSWER = pickDaily(DAY_IDX * 7 + 2, [..._recentNames, ANSWER?.name].filter(Boolean));
 
 // Salva os escolhidos de hoje no histórico
@@ -117,17 +121,18 @@ function mkCell(f) {
 }
  
 function makeRow(dino) {
-  const pF = periodCell(dino.period, ANSWER.period);
-  const dF = boolCell(dino.diet, ANSWER.diet, dino.diet);
-  const sF = sizeCell(dino.size, ANSWER.size);
-  const lF = boolCell(dino.loco, ANSWER.loco, dino.loco);
-  const rF = boolCell(
-    dino.region, ANSWER.region,
-    dino.region
-      .replace('América do Norte','Am. Norte')
-      .replace('América do Sul','Am. Sul')
-  );
-  const tax = taxCells(dino.path, ANSWER.path);
+  // No dia dos namorados, ANSWER é null — tudo aparece como errado
+  const ans = ANSWER || { period:'—', diet:'—', size:0, loco:'—', region:'—', path:[] };
+  const pF = IS_VALENTINES ? {cls:'r', icon:'✕', val: dino.period} : periodCell(dino.period, ans.period);
+  const dF = IS_VALENTINES ? {cls:'r', icon:'✕', val: dino.diet}   : boolCell(dino.diet, ans.diet, dino.diet);
+  const sF = IS_VALENTINES ? {cls:'r', icon:'✕', val: dino.size+'m'} : sizeCell(dino.size, ans.size);
+  const lF = IS_VALENTINES ? {cls:'r', icon:'✕', val: dino.loco}   : boolCell(dino.loco, ans.loco, dino.loco);
+  const rF = IS_VALENTINES
+    ? {cls:'r', icon:'✕', val: dino.region.replace('América do Norte','Am. Norte').replace('América do Sul','Am. Sul')}
+    : boolCell(dino.region, ans.region, dino.region.replace('América do Norte','Am. Norte').replace('América do Sul','Am. Sul'));
+  const tax = IS_VALENTINES
+    ? dino.path.map(v => ({v, c:'r'}))
+    : taxCells(dino.path, ans.path);
   const taxHtml = tax.map(t=>`
     <span class="tm ${t.c}">${t.v.length>13 ? t.v.slice(0,12)+'…' : t.v}</span>
   `).join('');
@@ -248,31 +253,46 @@ function submit() {
   const tbody = document.getElementById('guess-body');
   tbody.insertBefore(makeRow(found), tbody.firstChild);
  
-  const win = found.name === ANSWER.name;
+  const win = !IS_VALENTINES && found.name === ANSWER.name;
   if(win || n >= 20) {
     gameOver = true;
     document.getElementById('input-area').style.display='none';
-    updateStats(win,n);
-     classicSaveState(win);
+    updateStats(win, n);
+    classicSaveState(win);
     setTimeout(() => showResult(win, n), 2000);
   }
 }
- 
+
 // ── Result ────────────────────────────────────────────────
-function showResult(won,n) {
+function showResult(won, n) {
   const banner = document.getElementById('result-banner');
+
+  // 💕 Modo Dia dos Namorados
+  if (IS_VALENTINES && !won) {
+    document.body.classList.add('valentines-mode');
+    banner.classList.add('valentines-banner');
+    banner.style.display = 'block';
+    banner.scrollIntoView({behavior:'smooth', block:'start'});
+    banner.innerHTML = `
+      <p class="valentines-emoji">🌸</p>
+      <p class="result-title valentines-title">Feliz Dia dos Cringes, Nana Daggers</p>
+      <p class="valentines-msg" id="valentines-msg-text">(por mais que eu vá ser bem romântico e cringe,pode ler com tranquilidade, não vai ser um pedido de namoro surpresa)<br>Tô cheio de vergonha escrevendo isso,pra começar tudo , nada melhor do que começar pelo dia que eu entrei naquela call , despretensiosamente , e que bom que eu entrei, porque ai eu tive a chance de te conhecer e já de cara eu já te achei meio doidinha , o que é bom , qual a graça de não ser meio doidinho? Depois disso ,acho que você também me achou meio doidinho, e ai a gente começou a jogar junto, justo o jogo que eu tava cm hiperfooco na época e tô até hoje, que eu jogava sozinho porque nenhum dos meus amigos gostava, mas desde a primeira partida que a gente jogou eu me diverti demais,não era nem mais pelo jogo em si, mas também pra ter sua companhia, a gente ria da coisa mais besta possível,"gente fica 3 na carga" ou do gugu wenda KKKKKKKK, e fomos ficando muito próximos de um jeito muito natural , e acho que no meio disso tudo eu começei a gostar de você, e acho que foi por causa dos detalhes mais bestas, tipo quando você fica brava por que alguém ta te focando, ou porque quando você fala de alguma coisa que você gosta, você fala de um jeito tão legal e fala tanta coisa que eu fico admirado com você falando que eu poderia te escutar até você cansar de falar , ou quando você fala alguma coisa relacionada a alguém se cagar e faz issso ser a coisa mais engraçada do mundo , ou talvez por você jogar todos os dias o jogo do dinossauro que eu fiz despretensiosamente pra você, ou por que você tratar tão bem seus bixinhos que é apaixonante olhar pra você com eles, ou porque vc aleatoriamente me manda foto deles no meio do dia e eles tão sempre com cara de minion, e isso anima meus dias, ou as calls praticamente todos os dias , desde ver um filme legal ou até um vídeo meme no youtube só pra poder ficar tempo junto na call, ou você voltar a jogar lol só pra jogar comigo porque você gostou de me ver jogando, ou porque você me mostra os seus desenhos e eles tão sempre muito banger e quando estão esquisitos a gente fala algo engraçado e da risada deles , ou também seja por quando sempre que a gente desliga a call você faz "ãããããã" e eu acho isso o ápice da fofura. Enfim eu acho que na real mesmo eu gosto muito de você por você ser quem você é, pode parecer clichê mas eu vou estar sempre aqui , tomara que você tenha gostado</p>
+      <p class="valentines-sig"> (Me caguei fazendo isso) Duquinhas 🦕💕</p>
+    `;
+    startHeartsAnimation();
+    return;
+  }
+
   banner.style.display='block';
   banner.scrollIntoView({behavior:'smooth',block:'start'});
   document.getElementById('result-title').textContent = won ? 'Parabéns! 🦕' : 'Fim de jogo!';
   document.getElementById('result-sub').innerHTML = won
     ? `Você descobriu o <strong style="color:var(--amber-l)">${ANSWER.common}</strong> em ${n} tentativa${n>1?'s':''}!`
     : `Era o <strong style="color:var(--amber-l)">${ANSWER.common}</strong> <em style="color:var(--muted)">(${ANSWER.name})</em> — ${ANSWER.period} · ${ANSWER.size}m · ${ANSWER.diet}`;
- 
+
   const w = document.getElementById('result-img-wrap');
-  w.innerHTML = '<span style="color:var(--muted);font-size:12px">Carregando imagem…</span>';
+  w.innerHTML = '';
   w.style.display = 'flex';
- 
- w.innerHTML = '';
   const img = document.createElement('img');
   img.src = ANSWER.imgClassic;
   img.alt = ANSWER.common;
@@ -280,6 +300,23 @@ function showResult(won,n) {
   img.onerror = () => { w.style.display = 'none'; };
   w.appendChild(img);
   document.getElementById('share-btn').addEventListener('click', shareResult);
+}
+
+// ── Animação de corações flutuantes 💕 ────────────────────
+function startHeartsAnimation() {
+  const emojis = ['🌸','💕','🦕','💖','🌷','✨','💗','🥰'];
+  function spawnHeart() {
+    const el = document.createElement('span');
+    el.className = 'floating-heart';
+    el.textContent = emojis[Math.floor(Math.random() * emojis.length)];
+    el.style.left = Math.random() * 100 + 'vw';
+    el.style.animationDuration = (3 + Math.random() * 4) + 's';
+    el.style.fontSize = (14 + Math.random() * 18) + 'px';
+    document.body.appendChild(el);
+    el.addEventListener('animationend', () => el.remove());
+  }
+  for(let i = 0; i < 14; i++) setTimeout(spawnHeart, i * 100);
+  setInterval(spawnHeart, 550);
 }
  
 // ── Share ─────────────────────────────────────────────────
@@ -371,8 +408,8 @@ function fotoInit() {
   // Show loading state
   wrap.style.background = 'var(--surface2)';
  
- img.src = FOTO_ANSWER.imgPhoto;
- img.alt = FOTO_ANSWER.common;
+  img.src = IS_VALENTINES ? 'imgphoto/valeskin.png' : FOTO_ANSWER.imgPhoto;
+ img.alt = IS_VALENTINES ? '???' : FOTO_ANSWER.common;
  img.onerror = () => { wrap.style.background = 'var(--surface2)'; };
  
   applyBlur(0);
@@ -441,7 +478,7 @@ function fotoSubmit() {
   inp.value = '';
   document.getElementById('foto-ac-list').style.display='none';
  
-  const correct = found.name === FOTO_ANSWER.name;
+ const correct = !IS_VALENTINES && found.name === FOTO_ANSWER.name;
   const entry   = { name: found.name, common: found.common, sci: found.name, correct };
  
   fotoGuesses.push(entry);
@@ -517,6 +554,21 @@ function addFotoGuessItem(entry, idx, animate) {
 // ── Result ────────────────────────────────────────────────
 function showFotoResult(won, n) {
   const banner = document.getElementById('foto-result-banner');
+  // 💕 Surpresa modo foto
+  if (IS_VALENTINES && !won) {
+    document.body.classList.add('valentines-mode');
+    banner.classList.add('valentines-banner');
+    banner.style.display = 'block';
+    banner.scrollIntoView({behavior:'smooth', block:'nearest'});
+    banner.innerHTML = `
+      <p class="valentines-emoji"></p>
+      <p class="result-title valentines-title"></p>
+      <p class="valentines-msg">Essa não era um dinossauro...<br>era um Vale Skin Dagger Praiana</p>
+      <p class="valentines-sig">Pra melhor duo do mundo🦕💕</p>
+    `;
+    startHeartsAnimation();
+    return;
+  }
   banner.style.display='block';
   banner.scrollIntoView({behavior:'smooth',block:'nearest'});
   document.getElementById('foto-result-title').textContent = won ? 'Acertou! 🎉' : 'Fim de jogo!';
